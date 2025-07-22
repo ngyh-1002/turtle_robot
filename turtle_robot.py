@@ -44,18 +44,19 @@ def turtle_drive(t,a,b,x,y):
     t.lt(60)
     t.fd(200)
     t.goto(x,y)
-    print(f'거북이의 출발지에서 도착지까지 거리 : {turtle_distance(a,b,x,y)}')
-    print(drive_finish(t,x,y))  
+    turtle_distance(a,b,x,y)
+    drive_finish(t,x,y)
+    return
 #출발, 도착지점 거리계산함수
 def turtle_distance(a,b,x,y):
     t_distace_square = (a-x) * (a-x) + (b-y) * (b-y)
     t_distance = math.sqrt(t_distace_square)
-    return t_distance
+    return print(f'거북이의 출발지에서 도착지까지 거리 : {t_distance}')
 
 #도착확인기능함수
 def drive_finish(t,x,y):
-    if t.pos() >= (-325,-325):
-        print("목적지에 도착했습니다!")
+    if t.pos() >= (x-25, y-25) and t.pos() <= (x+25, y+25):
+        return print("목적지에 도착했습니다!")
         
 #프로그램실행   
 turtle_drive(t, -350, -350, 350, 350)
