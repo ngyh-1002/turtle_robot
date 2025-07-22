@@ -28,25 +28,25 @@ for i in range(4):
 
 # 장애물 지정
 t.penup()
-t.goto(0,0)
+t.goto(0,-50)
 t.pendown()
 
-for i in range(3):
-    t.fd(100)
-    t.lt(120)
+t.circle(50)
 
 #거북이 이동 경로
 def turtle_drive(t,a,b,x,y):
     t.penup()
     t.goto(a,b)
     t.pendown()
-    t.goto(-50, -50)
-    t.lt(60)
-    t.fd(200)
-    t.goto(x,y)
+    t.goto(-10, -10)
+    if check_collision(t) == True:
+        print('충돌이 발생했습니다!')
+        return
+    t.goto(x, y)
     turtle_distance(a,b,x,y)
     drive_finish(t,x,y)
-    return
+    return 
+
 #출발, 도착지점 거리계산함수
 def turtle_distance(a,b,x,y):
     t_distace_square = (a-x) * (a-x) + (b-y) * (b-y)
@@ -57,6 +57,16 @@ def turtle_distance(a,b,x,y):
 def drive_finish(t,x,y):
     if t.pos() >= (x-25, y-25) and t.pos() <= (x+25, y+25):
         return print("목적지에 도착했습니다!")
-        
+
+# 면적 계산 함수
+def check_collision(t):
+    t_x = t.xcor()
+    t_y = t.ycor()
+    obstacle_distance_square = (0-t_x) ** 2 + (0-t_y) ** 2
+    obstacle_distance = math.sqrt(obstacle_distance_square)
+    if obstacle_distance <= (24 + 50) :
+         return True
+    return False
+    
 #프로그램실행   
 turtle_drive(t, -350, -350, 350, 350)
