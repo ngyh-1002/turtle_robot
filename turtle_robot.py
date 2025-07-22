@@ -2,8 +2,7 @@ import turtle
 
 # 스크린 생성
 s = turtle.getscreen()
-s.screensize(400, 400)
-
+s.setup(width=900, height=900)
 #거북이 변수 지정
 t = turtle.Turtle()
 t.shapesize(3,3,3)
